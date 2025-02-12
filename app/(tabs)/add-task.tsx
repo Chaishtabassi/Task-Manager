@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { 
-  View, TextInput, Button, Platform, KeyboardAvoidingView, Text, TouchableOpacity, Image 
-} from "react-native";
+import { View, TextInput, Button, Platform, KeyboardAvoidingView, Text, TouchableOpacity, Image,StyleSheet } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker"; 
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, editTask } from "../redux/tasksSlice";
@@ -9,7 +7,7 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import uuid from "react-native-uuid"; 
 import { RootState } from "../redux/store";
 import { Ionicons } from "@expo/vector-icons";
-import * as ImagePicker from "expo-image-picker";  // Import expo-image-picker
+import * as ImagePicker from "expo-image-picker";  
 
 export default function AddTaskScreen() {
   const { id } = useLocalSearchParams();
@@ -24,7 +22,7 @@ export default function AddTaskScreen() {
     existingTask?.dueDate ? new Date(existingTask.dueDate) : new Date()
   );
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [image, setImage] = useState<string | null>(null); // State for image
+  const [image, setImage] = useState<string | undefined>(existingTask?.image);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -120,16 +118,17 @@ export default function AddTaskScreen() {
       </View>
 
       <TouchableOpacity 
-        style={styles.floatingButton} 
-        onPress={openCamera}
-      >
-        <Ionicons name="camera" size={30} color="white" />
-      </TouchableOpacity>
+  style={[styles.floatingButton]} 
+  onPress={openCamera}
+>
+  <Ionicons name="camera" size={30} color="white" />
+</TouchableOpacity>
+
     </KeyboardAvoidingView>
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   floatingButton: {
     position: "absolute",
     bottom: 20,
@@ -145,5 +144,5 @@ const styles = {
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-  }
-};
+  } as const, 
+});

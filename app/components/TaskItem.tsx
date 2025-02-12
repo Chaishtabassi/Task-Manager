@@ -7,7 +7,7 @@ import { removeTask } from "../redux/tasksSlice";
 interface TaskItemProps {
   id: string;
   title: string;
-  dueDate?: string; // Optional due date
+  dueDate?: string; 
 }
 
 export default function TaskItem({ id, title, dueDate }: TaskItemProps) {

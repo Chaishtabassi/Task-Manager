@@ -23,14 +23,14 @@ export default function EditTaskScreen() {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (task) {
       setTitle(task.title);
       setDescription(task.description || "");
       setDueDate(task.dueDate ? new Date(task.dueDate) : new Date());
-      setImage(task.image || null);
+      setImage(task.image ?? undefined); 
     }
   }, [task]);
 

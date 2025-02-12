@@ -6,7 +6,7 @@ import { View, Text, Button, SafeAreaView, StyleSheet } from "react-native";
 
 export default function TaskDetailScreen() {
   const { id } = useLocalSearchParams();
-  const taskId = Array.isArray(id) ? id[0] : id; // Ensure it's a string
+  const taskId = Array.isArray(id) ? id[0] : id; 
   const task = useSelector((state: RootState) =>
     state.tasks.find((t) => t.id === taskId)
   );

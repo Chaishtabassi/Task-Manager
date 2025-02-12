@@ -5,7 +5,7 @@ interface Task {
   title: string;
   description?: string;
   dueDate?: string;
-  image?: string; // Add image field
+  image?: string;
 }
 
 const initialState: Task[] = [];
